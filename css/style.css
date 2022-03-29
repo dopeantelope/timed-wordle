@@ -158,7 +158,9 @@ button {
   width: 24rem;
   border-radius: 0.5rem;
 }
-
+.time-selection{
+  display: visible;
+}
 @media all and (max-width: 450px) {
   .keyboard-button {
     padding: 1rem 0.62rem;

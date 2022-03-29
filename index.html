@@ -21,9 +21,18 @@
 	</head>
 	<body>
 		<h1>WORDLE</h1>
-
+    <div id="timer-selection">
+     <p> Select Time: <p>
+      <button class="time-selected" value="1"> 1 minute </button>
+      <button class="time-selected" value="2"> 2 minutes </button>
+      <button class="time-selected" value="5"> 5 minutes </button>
+      <button class="time-selected" value="10"> 10 minutes </button>
+     </div>
+    <div>
+      Time : <span id="timer"></span>
+    </div>
     <div id="game-board"></div>
-
+    
     <div id="keyboard-cont">
       <div class="first-row">
           <button class="keyboard-button">q</button>
