@@ -1,0 +1,184 @@
+
+body {
+  font-family: 'Roboto';
+}
+
+h1, h2, h3 {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  padding: 2rem 0;
+}
+
+h2, h3 {
+  color: rgb(255, 136, 162);
+}
+
+h3 {
+  padding: 0;
+  font-size: 1rem;
+}
+
+#actualWord {
+  color: white;
+  font-size: 1.2rem;
+  padding-bottom: 2rem;
+  margin-top: -2rem;
+}
+
+#game-board {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.letter-box {
+  border: 2px solid rgb(224, 224, 224);
+  border-radius: 3px;
+  margin: 2px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+
+.letter-row {
+  display: flex;
+}
+
+.lose-modal-content > h1 {
+  padding-bottom: 1rem;
+}
+
+#actualWord {
+  margin-bottom: 1rem;
+}
+
+#keyboard-cont {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2px;
+}
+
+#keyboard-cont div {
+  display: flex;
+}
+
+.second-row {
+  margin: 0.5rem 0;
+}
+
+button {
+  border: none;
+  color: black;
+}
+
+.keyboard-button {
+  display: flex;
+  color:black;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto';
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 2px;
+  padding: 1rem 0.75rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: rgb(224, 224, 224);
+}
+
+.eye {
+  padding: 1rem 1rem;
+}
+
+.del {
+  width: 48px;
+}
+
+.enter {
+  width: 66px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+#next-level-button, #next-level-lose-button {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  font-size: 18px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#win-modal, #lose-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.win-modal-content {
+  background-color: #71C562;
+  color: white;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem 1.5rem;
+  width: 24rem;
+  border-radius: 0.5rem;
+}
+.lose-modal-content {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(196, 89, 84);
+  color: white;
+  padding: 1rem 1.5rem;
+  width: 24rem;
+  border-radius: 0.5rem;
+}
+
+@media all and (max-width: 450px) {
+  .keyboard-button {
+    padding: 1rem 0.62rem;
+  }
+  .eye {
+    padding: 1rem 1rem;
+  }
+  .win-modal-content, .lose-modal-content {
+    top: 50%;
+  }
+}
+
+@media all and (max-width: 370px) {
+  .keyboard-button {
+    padding: 1rem 0.5rem;
+  }
+  .eye {
+    padding: 1rem 0.75rem;
+  }
+  .win-modal-content, .lose-modal-content {
+    top: 50%;
+  }
+}
