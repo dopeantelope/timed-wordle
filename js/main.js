@@ -85,8 +85,8 @@ function nextLevel() {
     nextLetter = 0;
     resetBoard()
     console.log(rightGuessString)
-    score = score+1
-    document.getElementById('score').innerHTML=score
+    score = score + 1
+    document.getElementById('score').innerHTML = score
 
 }
 function resetBoard() {
@@ -144,7 +144,7 @@ function checkGuess() {
             rightGuess[letterPosition] = "#"
         }
 
-      
+
         setTimeout(() => {
             //flip box
             animateCSS(box)
@@ -238,38 +238,39 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
         node.addEventListener('animationend', handleAnimationEnd, { once: true });
     });
 
-    function timeSelected(value){
-        document.getElementById("home").style.display = "none"
-        startTimer(value);
-    }
-    let startingTime;
-    for (const button of document.getElementsByClassName("time-selected")) {
-        button.addEventListener('click', function (){
-            timeSelected(button.value)
-        });
-    }
+function timeSelected(value) {
+    document.getElementById("home").style.display = "none"
+    startTimer(value);
+}
+let startingTime;
+for (const button of document.getElementsByClassName("time-selected")) {
+    button.addEventListener('click', function () {
+        timeSelected(button.value)
+    });
+}
 
 
-    function startTimer(value){
-                startingTime= value;
-         time = startingTime * 60;
-        let countdownEl =  document.getElementById('timer')
-        setInterval(countdownTimer, 1000)
-        function countdownTimer(){
-            const minutes = Math.floor(time/60);
-            let seconds = time % 60; 
-            countdownEl.innerHTML = `${minutes}:${seconds}`; 
-            time --;
-            time = time = time < 0 ? 0: time
-           endGame()
+function startTimer(value) {
+    startingTime = value;
+    time = startingTime * 60;
+    let countdownEl = document.getElementById('timer')
+    setInterval(countdownTimer, 1000)
+    function countdownTimer() {
+        const minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+        countdownEl.innerHTML = `${minutes}:${seconds}`;
+        time--;
+        time = time = time < 0 ? 0 : time
+        endGame()
 
-        
-        }
-    
+
     }
-        
-    function endGame(){
-        if(time===0){
-            document.getElementById("lose-modal").style.visibility = "visible"
-        }
+
+}
+
+function endGame() {
+    if (time === 0) {
+        document.getElementById("lose-modal").style.visibility = "visible"
+        document.getElementById('score-modal').innerHTML = score
     }
+}
