@@ -5,7 +5,7 @@ let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
 let gameCount = 0;
-let rightGuessString = WORDS[gameCount]
+let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)]
 let wordsArray = [];
 
 
@@ -100,67 +100,6 @@ function resetBoard() {
     }
 }
 
-function showStatsView() {
-    // Text on stats page
-    document.querySelector("h1").innerText = "YOU ARE"
-    let modalDelay = 3600
-    setTimeout(() => {
-        document.querySelector("h2").innerText = "HAPPY MOTHERS DAY"
-    }, modalDelay)
-
-    // modal
-    document.querySelector("#keyboard-cont").style.display = 'none'
-    document.getElementById('win-modal').style.visibility = 'hidden'
-    document.getElementById('lose-modal').style.visibility = 'hidden'
-    document.getElementById("game-board").innerHTML = ("");
-
-    //create board
-    resetBoard();
-    let boxes = document.getElementsByClassName("letter-box")
-
-    //make wordArray
-    let adjectives = ['funny', 'loyal', 'great', 'super', 'elite', 'loved'];
-    for (let i = 0; i < adjectives.length; i++) {
-        for (let j = 0; j < 5; j++) {
-            wordsArray.push(adjectives[i][j])
-        }
-    }
-    //populateColumns
-    getColumns(0, boxes, 600);
-    getColumns(1, boxes, 1200);
-    getColumns(2, boxes, 1800);
-    getColumns(3, boxes, 2400);
-    getColumns(4, boxes, 3000);
-}
-
-function getColumns(startPosition, boxes, delay) {
-    let column = [];
-    //get letters
-    for (let i = startPosition; i < boxes.length; i += 5) {
-        setTimeout(() => {
-            boxes[i].innerHTML = wordsArray[i]
-        })
-        //get colour and flip animation
-        column.push(boxes[i]);
-        adjectiveAnimation(column, delay)
-    }
-}
-
-function adjectiveAnimation(column, delay) {
-    for (let i = 0; i < column.length; i++) {
-        setTimeout(() => {
-            //flip box
-            animateCSS(column[i], 'flipInY')
-            //shade box
-            column[i].style.backgroundColor = "#71C562"
-            column[i].style.border = "none"
-            column[i].style.padding = "2px"
-            //add letter
-        }, delay)
-    }
-
-}
-
 function checkGuess() {
     let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining]
     let guessString = ''
@@ -218,21 +157,9 @@ function checkGuess() {
     }
 
     if (guessString === rightGuessString) {
-        let modalDelay = 3000
-        setTimeout(() => {
-            document.getElementById('win-modal').style.visibility = 'visible'
-        }, modalDelay)
-        if (gameCount < 5) {
-            document.getElementById("next-level-button").innerText = "Next Level"
-            document.getElementById("next-level-button").addEventListener("click", nextLevel)
-        }
-        else {
-            document.getElementById("next-level-button").innerText = "View Stats"
-            document.getElementById("next-level-button").addEventListener("click", showStatsView)
+        
+      // next level kinda ting
 
-        }
-        guessesRemaining = 0
-        return
     } else {
         guessesRemaining -= 1;
         currentGuess = [];
@@ -244,14 +171,10 @@ function checkGuess() {
                 document.getElementById('lose-modal').style.visibility = 'visible'
             }, modalDelay)
             if (gameCount < 5) {
-                document.getElementById('actualWord').innerHTML = `The correct word was: ${rightGuessString.toUpperCase()}`
-                document.getElementById("next-level-lose-button").innerText = "Next Level"
-                document.getElementById("next-level-lose-button").addEventListener("click", nextLevel)
+                document.getElementById('actualWord').innerHTML = ` ${rightGuessString.toUpperCase()}`
             }
             else {
-                document.getElementById('actualWord').innerHTML = `The right word was: ${rightGuessString.toUpperCase()}`
-                document.getElementById("next-level-lose-button").innerText = "View Stats"
-                document.getElementById("next-level-lose-button").addEventListener("click", showStatsView)
+                document.getElementById('actualWord').innerHTML = `${rightGuessString.toUpperCase()}`
             }
         }
     }

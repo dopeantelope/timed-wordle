@@ -3,15 +3,18 @@ body {
   font-family: 'Roboto';
 }
 
-h1, h2, h3 {
+h1 {
   display: flex;
   justify-content: center;
   font-size: 2rem;
   padding: 2rem 0;
 }
 
-h2, h3 {
-  color: rgb(255, 136, 162);
+h2 {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  padding: 1.6rem 0;
 }
 
 h3 {
@@ -19,11 +22,39 @@ h3 {
   font-size: 1rem;
 }
 
+p {
+  font-weight: 300;
+}
+
 #actualWord {
-  color: white;
-  font-size: 1.2rem;
-  padding-bottom: 2rem;
-  margin-top: -2rem;
+  margin-top: 1.6rem;
+  font-size: 2rem;
+}
+
+span {
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.right-word {
+  display: flex;
+  justify-content: center;
+}
+
+.icons {
+  display: flex;
+  justify-content: space-around;
+  margin: 1.6rem 2rem;
+}
+
+.score {
+  margin: 2.4rem 6rem;
+  padding: 1rem 1.4rem;
+  border: 1px solid black;
+}
+
+.ph {
+  font-size: 2rem;
 }
 
 #game-board {
@@ -34,9 +65,9 @@ h3 {
 
 
 .letter-box {
-  border: 2px solid rgb(224, 224, 224);
-  border-radius: 3px;
+  border: 1px solid rgb(224, 224, 224);
   margin: 2px;
+  padding: 1px;
   font-size: 2.5rem;
   font-weight: 700;
   height: 3rem;
@@ -54,10 +85,6 @@ h3 {
 
 .lose-modal-content > h1 {
   padding-bottom: 1rem;
-}
-
-#actualWord {
-  margin-bottom: 1rem;
 }
 
 #keyboard-cont {
@@ -79,6 +106,8 @@ h3 {
 button {
   border: none;
   color: black;
+  background: white;
+  cursor: pointer; 
 }
 
 .keyboard-button {
@@ -93,7 +122,8 @@ button {
   padding: 1rem 0.75rem;
   cursor: pointer;
   text-transform: uppercase;
-  background-color: rgb(224, 224, 224);
+  border: 1px solid black;
+  background-color: white;
 }
 
 .eye {
@@ -148,15 +178,17 @@ button {
   border-radius: 0.5rem;
 }
 .lose-modal-content {
+  font-family: 'Source Sans Pro';
+  text-transform: uppercase;
+  font-weight: 400;
   position: absolute;
   top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgb(196, 89, 84);
-  color: white;
+  background-color: white;
+  color: black;
   padding: 1rem 1.5rem;
   width: 24rem;
-  border-radius: 0.5rem;
 }
 
 @media all and (max-width: 450px) {
