@@ -61,7 +61,6 @@ function insertLetter(pressedKey) {
 
     let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining]
     let box = row.children[nextLetter]
-    animateCSS(box, "pulse")
     box.textContent = pressedKey
     box.classList.add("filled-box")
     currentGuess.push(pressedKey)
@@ -79,24 +78,22 @@ function deleteLetter() {
 
 function nextLevel() {
     gameCount = gameCount + 1
-    console.log("inside next level" + gameCount);
     guessesRemaining = 6;
     rightGuessString = WORDS[gameCount];
-    console.log("next word" + rightGuessString);
     currentGuess = [];
     nextLetter = 0;
     resetBoard();
-    document.getElementById('win-modal').style.visibility = 'hidden'
     document.getElementById('lose-modal').style.visibility = 'hidden'
 
 }
 function resetBoard() {
     //clear grid
+    console.log("reset");
     document.getElementById("game-board").innerHTML = ("");
     initBoard();
     //reset colour of keyboard
     for (const elem of document.getElementsByClassName("keyboard-button")) {
-        elem.style.backgroundColor = "rgb(243, 243, 243)"
+        elem.style.backgroundColor = "white"
     }
 }
 
@@ -144,21 +141,20 @@ function checkGuess() {
             rightGuess[letterPosition] = "#"
         }
 
-        let delay = 600 * i
+      
         setTimeout(() => {
             //flip box
-            animateCSS(box, 'flipInY')
+            animateCSS(box)
             //shade box
             box.style.backgroundColor = letterColor
             box.style.border = "none"
             box.style.padding = "2px"
             shadeKeyBoard(letter, letterColor)
-        }, delay)
+        })
     }
 
     if (guessString === rightGuessString) {
-        
-      // next level kinda ting
+      nextLevel()
 
     } else {
         guessesRemaining -= 1;
@@ -166,7 +162,7 @@ function checkGuess() {
         nextLetter = 0;
 
         if (guessesRemaining === 0) {
-            let modalDelay = 3000
+            let modalDelay = 0
             setTimeout(() => {
                 document.getElementById('lose-modal').style.visibility = 'visible'
             }, modalDelay)
@@ -181,17 +177,13 @@ function checkGuess() {
 }
 
 function shadeKeyBoard(letter, color) {
-    console.log("hereee" +color)
     for (const elem of document.getElementsByClassName("keyboard-button")) {
         if (elem.textContent === letter) {
             let oldColor = elem.style.backgroundColor
-            console.log("oldcolor" +oldColor)
-            console.log("color" + color)
             if (oldColor === 'rgb(113, 197, 98)') {
                 return
             }
             if (oldColor === 'rgb(255, 215, 0)' && color !== '#71C562') {
-                console.log("hi")
                 return
             }
             elem.style.backgroundColor = color
