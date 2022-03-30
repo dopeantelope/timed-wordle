@@ -79,10 +79,10 @@ function deleteLetter() {
 function nextLevel() {
     gameCount = gameCount + 1
     guessesRemaining = 6;
-    rightGuessString = WORDS[gameCount];
+    rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
     currentGuess = [];
     nextLetter = 0;
-    resetBoard();
+    resetBoard()
     document.getElementById('lose-modal').style.visibility = 'hidden'
 
 }
