@@ -171,12 +171,8 @@ function checkGuess() {
             setTimeout(() => {
                 document.getElementById('lose-modal').style.visibility = 'visible'
             }, modalDelay)
-            if (gameCount < 5) {
-                document.getElementById('actualWord').innerHTML = ` ${rightGuessString.toUpperCase()}`
-            }
-            else {
-                document.getElementById('actualWord').innerHTML = `${rightGuessString.toUpperCase()}`
-            }
+            document.getElementById('score-modal').innerHTML = score
+
         }
     }
 }
