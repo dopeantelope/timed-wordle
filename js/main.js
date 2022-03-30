@@ -172,6 +172,7 @@ function checkGuess() {
                 document.getElementById('lose-modal').style.visibility = 'visible'
             }, modalDelay)
             document.getElementById('score-modal').innerHTML = score
+            document.getElementById('actualWord').innerHTML =  rightGuessString.toUpperCase()
 
         }
     }
@@ -258,8 +259,6 @@ function startTimer(value) {
         time--;
         time = time = time < 0 ? 0 : time
         endGame()
-
-
     }
 
 }
