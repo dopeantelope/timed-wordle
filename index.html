@@ -10,7 +10,7 @@
       <script src="https://unpkg.com/phosphor-icons"></script>
 
 		<title>Wordle</title>
-
+    
 		<!-- external CSS link -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
 	</head>
 	<body>
 		<h1>WORDLE</h1>
-
+    <p id="timer"></p>
     <div id="game-board"></div>
 
     <div id="keyboard-cont">
@@ -72,11 +72,12 @@
         <button><i class="ph-question ph"></i></button>
       </div>
       <h1>speedle</h1>
+      
       <div class="buttons">
-        <button class="1 minute-button">1 minute</button>
-        <button class="2 minute-button">2 minutes</button>
-        <button class="5 minute-button">5 minutes</button>
-        <button class="10 minute-button">10 minutes</button>
+        <button class="time-selected" value="1">1 minute</button>
+        <button class="time-selected" value="2">2 minutes</button>
+        <button class="time-selected" value="5">5 minutes</button>
+        <button class="time-selected" value="10">10 minutes</button>
       <div class="icons">
         <button><i class="ph-chart-bar ph"></i></button>
         <button><i class="ph-gear ph"></i></button>

@@ -6,7 +6,7 @@ let currentGuess = [];
 let nextLetter = 0;
 let gameCount = 0;
 let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)]
-let wordsArray = [];
+let time;
 
 
 function initBoard() {
@@ -234,3 +234,39 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
 
         node.addEventListener('animationend', handleAnimationEnd, { once: true });
     });
+
+    function timeSelected(value){
+        document.getElementById("home").style.display = "none"
+        startTimer(value);
+    }
+    let startingTime;
+    for (const button of document.getElementsByClassName("time-selected")) {
+        button.addEventListener('click', function (){
+            timeSelected(button.value)
+        });
+    }
+
+
+    function startTimer(value){
+                startingTime= value;
+         time = startingTime * 60;
+        let countdownEl =  document.getElementById('timer')
+        setInterval(countdownTimer, 1000)
+        function countdownTimer(){
+            const minutes = Math.floor(time/60);
+            let seconds = time % 60; 
+            countdownEl.innerHTML = `${minutes}:${seconds}`; 
+            time --;
+            time = time = time < 0 ? 0: time
+           endGame()
+
+        
+        }
+    
+    }
+        
+    function endGame(){
+        if(time===0){
+            document.getElementById("lose-modal").style.visibility = "visible"
+        }
+    }
