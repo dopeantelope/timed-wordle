@@ -4,9 +4,9 @@ const NUMBER_OF_GUESSES = 6;
 let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
-let gameCount = 0;
 let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)]
 let time;
+let score = 0;
 
 
 function initBoard() {
@@ -28,6 +28,8 @@ function initBoard() {
 initBoard()
 
 document.addEventListener("keyup", (e) => {
+    console.log(rightGuessString)
+
 
     if (guessesRemaining === 0) {
         return
@@ -77,13 +79,14 @@ function deleteLetter() {
 }
 
 function nextLevel() {
-    gameCount = gameCount + 1
     guessesRemaining = 6;
     rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
     currentGuess = [];
     nextLetter = 0;
     resetBoard()
-    document.getElementById('lose-modal').style.visibility = 'hidden'
+    console.log(rightGuessString)
+    score = score+1
+    document.getElementById('score').innerHTML=score
 
 }
 function resetBoard() {
