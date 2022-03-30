@@ -321,26 +321,27 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
     });
 
     for (const button of document.getElementsByClassName("time-selected")) {
-        button.addEventListener('click', () => {
-            const value = button.value;
-            console.log(value);
-            document.getElementById('timer-selection').style.visibility = "hidden"
-            
-        });
+        button.addEventListener('click', startTimer(button));
     }
     
+function startTimer(button){
+    const value = button.value;
+            document.getElementById('timer-selection').style.visibility = "hidden"
+            startingTime= value;
+    let time = startingTime * 60;
+    let countdownEl =  document.getElementById('timer')
+    setInterval(countdownTimer, 1000)
+    function countdownTimer(){
+        const minutes = Math.floor(time/60);
+        let seconds = time % 60; 
+        countdownEl.innerHTML = `${minutes}:${seconds}`; 
+        time --;
+        time = time = time < 0 ? 0: time
+    
+    }
 
+}
     
 
 
-let time = startingTime * 60;
-let countdownEl =  document.getElementById('timer')
-setInterval(countdownTimer, 1000)
-function countdownTimer(){
-    const minutes = Math.floor(time/60);
-    let seconds = time % 60; 
-    countdownEl.innerHTML = `${minutes}:${seconds}`; 
-    time --;
-    time = time = time < 0 ? 0: time
 
-}
