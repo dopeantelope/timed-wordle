@@ -154,7 +154,9 @@ function checkGuess() {
     }
 
     if (guessString === rightGuessString) {
-      nextLevel()
+        setTimeout(() => {
+            nextLevel()
+        }, 40)
 
     } else {
         guessesRemaining -= 1;
