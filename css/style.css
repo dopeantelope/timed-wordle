@@ -13,7 +13,7 @@ h1 {
   display: flex;
   justify-content: center;
   font-size: 2rem;
-  padding: 2rem 0;
+  padding: 2rem 0 1.2rem 0;
 }
 
 p {
@@ -134,9 +134,24 @@ button {
   width: 66px;
 }
 
+.score-timer-container {
+  margin: 0 auto;
+  display: flex;
+  width: 278px;
+  justify-content: space-between;
+  font-family: "Source Sans Pro";
+  font-weight: 400;
+  font-size: 1.6rem;
 
+}
 
+.level {
+  /* visibility: hidden; */
+}
 
+#score {
+
+}
 /****** MODALS *******/
 
 .home {

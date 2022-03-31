@@ -86,7 +86,7 @@ function nextLevel() {
     resetBoard()
     console.log(rightGuessString)
     score = score + 1
-    document.getElementById('score').innerHTML = score
+    document.getElementById('score').innerHTML = `Score: ${score}`
 
 }
 function resetBoard() {
