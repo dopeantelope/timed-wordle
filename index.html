@@ -9,7 +9,7 @@
       <link rel="icon" href="images/NYT-Wordle-Icon-32.png">
       <script src="https://unpkg.com/phosphor-icons"></script>
 
-		<title>Wordle</title>
+		<title>speedle</title>
     
 		<!-- external CSS link -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,10 +21,10 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		<h1>WORDLE</h1>
+		<h1 class="title">SPEEDLE</h1>
     <div class="score-timer-container">
-      <p id="timer"></p>
       <p id="score"></p>
+      <p id="timer"></p>
     </div>
     <div id="game-board"></div>
 
@@ -53,7 +53,7 @@
           <button class="keyboard-button">l</button>
       </div>
       <div class="third-row">
-          <button class="keyboard-button del">Del</button>
+          <button class="keyboard-button enter">Enter</button>
           <button class="keyboard-button">z</button>
           <button class="keyboard-button">x</button>
           <button class="keyboard-button">c</button>
@@ -61,27 +61,24 @@
           <button class="keyboard-button">b</button>
           <button class="keyboard-button">n</button>
           <button class="keyboard-button">m</button>
-          <button class="keyboard-button enter">Enter</button>
+          <button class="keyboard-button del"><i class="ph-backspace ph"></i></button>
       </div>
   </div>
 
  
   <section id="home">
     <div class="home-content">
-      <div class="icons">
-        <button><i class="ph-moon-stars ph"></i></button>
-        <button><i class="ph-question ph"></i></button>
-      </div>
+        <button id="dark-mode"><i class="ph-toggle-left"></i></button>
       <h1>speedle</h1>
       
-      <div class="buttons">
+      <div class="timer-buttons">
         <button class="time-selected" value="1">1 minute</button>
         <button class="time-selected" value="2">2 minutes</button>
         <button class="time-selected" value="5">5 minutes</button>
         <button class="time-selected" value="10">10 minutes</button>
       <div class="icons">
-        <button><i class="ph-chart-bar ph"></i></button>
-        <button><i class="ph-gear ph"></i></button>
+        <button><i class="ph-chart-bar ph home-ph-chart-bar"></i></button>
+        <button><i class="ph-question ph"></i></button>
       </div>
       </div>
     </div>
@@ -96,8 +93,10 @@
           <p>score:&nbsp;&nbsp;</p>
           <p id="score-modal">wer</p>
         </div>
-        <div class="icons">
-          <button><i class="ph-arrow-counter-clockwise ph"></i></button><button><i class="ph-house-line ph"></i></button><button><i class="ph-chart-bar ph"></i></button>
+        <div class="lose-modal-icons">
+          <button><i class="ph-arrow-counter-clockwise ph"></i></button>
+          <button><i class="ph-house-line ph"></i></button>
+          <button><i class="ph-chart-bar ph lose-ph-chart-bar"></i></button>
         </div>
   </div>
 </div>

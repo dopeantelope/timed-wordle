@@ -23,6 +23,7 @@ function initBoard() {
         }
         board.appendChild(row)
     }
+    document.getElementById('score').innerHTML = `Level: ${score}`
 }
 
 initBoard()
@@ -86,7 +87,7 @@ function nextLevel() {
     resetBoard()
     console.log(rightGuessString)
     score = score + 1
-    document.getElementById('score').innerHTML = `Score: ${score}`
+    document.getElementById('score').innerHTML = `Level: ${score}`
 
 }
 function resetBoard() {
@@ -238,6 +239,7 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
 function timeSelected(value) {
     document.getElementById("home").style.display = "none"
     startTimer(value);
+    document.querySelector('.title').style.visibility = 'visible';
 }
 let startingTime;
 for (const button of document.getElementsByClassName("time-selected")) {
@@ -267,5 +269,6 @@ function endGame() {
     if (time === 0) {
         document.getElementById("lose-modal").style.visibility = "visible"
         document.getElementById('score-modal').innerHTML = score
+        document.getElementById('actualWord').innerHTML =  rightGuessString.toUpperCase()
     }
 }
