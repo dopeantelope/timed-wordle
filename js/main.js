@@ -307,4 +307,7 @@ document.getElementById("stats-button").addEventListener('click', function(){
     document.getElementById("stats-modal").style.visibility = "visible"
 })
 //populate stats modal
-//document.getElementById('1-minute-high-score').innerHTML = highScore
+document.getElementById('1-minute-high-score').innerHTML = localStorage.getItem('highScore'+1,score)
+document.getElementById('2-minute-high-score').innerHTML = localStorage.getItem('highScore'+2,score)
+document.getElementById('5-minute-high-score').innerHTML = localStorage.getItem('highScore'+5,score)
+document.getElementById('10-minute-high-score').innerHTML = localStorage.getItem('highScore'+10,score)
