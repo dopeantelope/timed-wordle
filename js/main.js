@@ -168,7 +168,7 @@ function checkGuess() {
         nextLetter = 0;
 
         if (guessesRemaining === 0) {
-            let modalDelay = 0
+            let modalDelay = 0;
             setTimeout(() => {
                 document.getElementById('lose-modal').style.visibility = 'visible'
             }, modalDelay)
@@ -257,7 +257,11 @@ function startTimer(value) {
     function countdownTimer() {
         const minutes = Math.floor(time / 60);
         let seconds = time % 60;
-        countdownEl.innerHTML = `${minutes}:${seconds}`;
+        let formattedSeconds = seconds.toLocaleString('en-US', {
+          minimumIntegerDigits: 2,
+          useGrouping: false
+        })
+        countdownEl.innerHTML = `${minutes}:${formattedSeconds}`;
         time--;
         time = time = time < 0 ? 0 : time
         endGame()
@@ -267,7 +271,10 @@ function startTimer(value) {
 
 function endGame() {
     if (time === 0) {
-        document.getElementById("lose-modal").style.visibility = "visible"
+      let modalDelay = 1001;
+            setTimeout(() => {
+                document.getElementById('lose-modal').style.visibility = 'visible'
+            }, modalDelay)
         document.getElementById('score-modal').innerHTML = score
         document.getElementById('actualWord').innerHTML =  rightGuessString.toUpperCase()
     }
