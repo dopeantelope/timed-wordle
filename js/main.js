@@ -7,7 +7,11 @@ let nextLetter = 0;
 let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)]
 let time;
 let score = 0;
-let highScore;
+let oneMinuteHighScore;
+let twoMinuteHighScore;
+let fiveMinuteHighScore;
+let tenMinuteHighScore;
+let gameTime;
 
 
 function initBoard() {
@@ -25,9 +29,11 @@ function initBoard() {
         board.appendChild(row)
     }
     document.getElementById('score').innerHTML = `Level: ${score}`
+
 }
 
 initBoard()
+
 
 document.addEventListener("keyup", (e) => {
     console.log(rightGuessString)
@@ -230,10 +236,12 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
         node.addEventListener('animationend', handleAnimationEnd, { once: true });
     });
 
+
 function timeSelected(value) {
     document.getElementById("home").style.display = "none"
-    startTimer(value);
     document.querySelector('.title').style.visibility = 'visible';
+    gameTime=value;
+    startTimer(value);
 }
 let startingTime;
 for (const button of document.getElementsByClassName("time-selected")) {
@@ -255,38 +263,43 @@ function startTimer(value) {
         time--;
         time = time = time < 0 ? 0 : time
         endGame()
+        console.log(localStorage)
+    checkIfHighScore(oneMinuteHighScore, score)
+
     }
 
 }
 
 function endGame() {
+    //makes modal visible, updates the score in the modal, shows current highscore,
+    // celebratory message if new highscore
     if (time === 0) {
         document.getElementById("lose-modal").style.visibility = "visible"
         document.getElementById('score-lose-modal').innerHTML = score
         document.getElementById('actualWord').innerHTML =  rightGuessString.toUpperCase()
-        checkIfHighScore(score)
-        document.getElementById('highscore').innerHTML = highScore
+        checkIfHighScore(gameTime, score)
+        document.getElementById('highscore').innerHTML = localStorage.getItem('highScore'+gameTime,score)
+        if(score > localStorage.getItem('highscore'+gameTime,score) ){
+        document.getElementById("new-highscore").style.visibility="visible"      
+        }
     }
+}
+
+
+//scoring - local storage
+function checkIfHighScore(gameTime, score){
+    let highScoreVersion = "highScore"+gameTime
+    highScoreVersion = localStorage.getItem('highScore'+gameTime,score);
+if(highScoreVersion !== null){
+    if (score > highScoreVersion) {
+        localStorage.setItem('highScore'+gameTime,score);
+    }
+}
 }
 
 //statistics modal
 document.getElementById("stats-button").addEventListener('click', function(){
     document.getElementById("stats-modal").style.visibility = "visible"
 })
-
-//scoring - local storage
-
-
-
-function checkIfHighScore(score){
- highScore = localStorage.getItem("highScore");
-
-if(highScore !== null){
-    if (score > highScore) {
-        localStorage.setItem("highScore", score);      
-    }
-}
-else{
-    localStorage.setItem("highScore", score);
-}
-}
+//populate stats modal
+//document.getElementById('1-minute-high-score').innerHTML = highScore

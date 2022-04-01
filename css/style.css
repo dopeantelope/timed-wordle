@@ -171,6 +171,10 @@ span {
   padding-bottom: 1rem;
 }
 
+#new-highscore {
+  visibility: hidden;
+}
+
 
 
 /****** BUTTONS ******/
