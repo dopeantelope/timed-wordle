@@ -5,9 +5,6 @@ body {
 
 
 /****** TEXT ******/
-
-
-
 h1 {
   display: flex;
   justify-content: center;
@@ -59,10 +56,6 @@ span {
 
 
 /****** GAME BOARD ******/
-
-
-
-
 #game-board {
   display: flex;
   align-items: center;
@@ -142,15 +135,11 @@ span {
 
 
 /****** MODALS *******/
-
-
-
-
-#lose-modal {
+#lose-modal, #stats-modal {
   visibility: hidden;
 }
 
-#home, #lose-modal {
+#home, #lose-modal, #stats-modal {
   position: fixed;
   left: 0;
   top: 0;
@@ -162,7 +151,7 @@ span {
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 
-.home-content, .lose-modal-content {
+.home-content, .lose-modal-content, .stats-modal-content {
   display: flex;
   flex-direction: column;
   font-family: 'Source Sans Pro', Helvetica, sans-serif;
@@ -182,13 +171,13 @@ span {
   padding-bottom: 1rem;
 }
 
+#new-highscore {
+  visibility: hidden;
+}
+
 
 
 /****** BUTTONS ******/
-
-
-
-
 button {
   border: none;
   color: black;
@@ -241,9 +230,6 @@ button {
 
 
 /****** MEDIA QUERIES ******/
-
-
-
 
 @media all and (max-width: 450px) {
   .keyboard-button {

@@ -7,6 +7,11 @@ let nextLetter = 0;
 let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)]
 let time;
 let score = 0;
+let oneMinuteHighScore;
+let twoMinuteHighScore;
+let fiveMinuteHighScore;
+let tenMinuteHighScore;
+let gameTime;
 
 
 function initBoard() {
@@ -24,13 +29,14 @@ function initBoard() {
         board.appendChild(row)
     }
     document.getElementById('score').innerHTML = `Level: ${score}`
+
 }
 
 initBoard()
 
+
 document.addEventListener("keyup", (e) => {
     console.log(rightGuessString)
-
 
     if (guessesRemaining === 0) {
         return
@@ -41,12 +47,10 @@ document.addEventListener("keyup", (e) => {
         deleteLetter()
         return
     }
-
     if (pressedKey === "Enter") {
         checkGuess()
         return
     }
-
     let found = pressedKey.match(/[a-z]/gi)
     if (!found || found.length > 1) {
         return
@@ -200,18 +204,14 @@ document.addEventListener('dblclick', function (event) {
 }, { passive: false })
 
 document.getElementById("keyboard-cont").addEventListener("click", (e) => {
-
     const target = e.target
-
     if (!target.classList.contains("keyboard-button")) {
         return
     }
     let key = target.textContent
-
     if (key === "Del") {
         key = "Backspace"
     }
-
     document.dispatchEvent(new KeyboardEvent("keyup", { 'key': key }))
 })
 
@@ -236,10 +236,12 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
         node.addEventListener('animationend', handleAnimationEnd, { once: true });
     });
 
+
 function timeSelected(value) {
     document.getElementById("home").style.display = "none"
-    startTimer(value);
     document.querySelector('.title').style.visibility = 'visible';
+    gameTime=value;
+    startTimer(value);
 }
 let startingTime;
 for (const button of document.getElementsByClassName("time-selected")) {
@@ -264,18 +266,56 @@ function startTimer(value) {
         countdownEl.innerHTML = `${minutes}:${formattedSeconds}`;
         time--;
         time = time = time < 0 ? 0 : time
+        if(time===0){
         endGame()
+        }
     }
 
 }
 
 function endGame() {
+    //makes modal visible, updates the score in the modal, shows current highscore,
+    // celebratory message if new highscore
+    
     if (time === 0) {
       let modalDelay = 1001;
             setTimeout(() => {
                 document.getElementById('lose-modal').style.visibility = 'visible'
             }, modalDelay)
-        document.getElementById('score-modal').innerHTML = score
+        document.getElementById('score-lose-modal').innerHTML = score
         document.getElementById('actualWord').innerHTML =  rightGuessString.toUpperCase()
+        checkIfHighScore(gameTime, score)
+        document.getElementById('highscore').innerHTML = localStorage.getItem('highScore'+gameTime,score)
+        if(score > localStorage.getItem('highscore'+gameTime,score) ){
+        document.getElementById("new-highscore").style.visibility="visible"    
+        
+        //add score to highscore array??
+        
     }
 }
+
+
+//scoring - local storage
+function checkIfHighScore(gameTime, score){
+    let highScoreVersion = "highScore"+gameTime
+    highScoreVersion = localStorage.getItem('highScore'+gameTime,score);
+if(highScoreVersion !== null){
+    if (score > highScoreVersion) {
+        localStorage.setItem('highScore'+gameTime,score);
+    }
+    
+}
+else{
+    localStorage.setItem("highScore"+gameTime, score);
+
+}}
+
+//statistics modal
+document.getElementById("stats-button").addEventListener('click', function(){
+    document.getElementById("stats-modal").style.visibility = "visible"
+})
+//populate stats modal
+document.getElementById('1-minute-high-score').innerHTML = localStorage.getItem('highScore'+1,score)
+document.getElementById('2-minute-high-score').innerHTML = localStorage.getItem('highScore'+2,score)
+document.getElementById('5-minute-high-score').innerHTML = localStorage.getItem('highScore'+5,score)
+document.getElementById('10-minute-high-score').innerHTML = localStorage.getItem('highScore'+10,score)
