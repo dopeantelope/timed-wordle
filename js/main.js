@@ -7,6 +7,7 @@ let nextLetter = 0;
 let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)]
 let time;
 let score = 0;
+let highScore;
 
 
 function initBoard() {
@@ -31,7 +32,6 @@ initBoard()
 document.addEventListener("keyup", (e) => {
     console.log(rightGuessString)
 
-
     if (guessesRemaining === 0) {
         return
     }
@@ -41,12 +41,10 @@ document.addEventListener("keyup", (e) => {
         deleteLetter()
         return
     }
-
     if (pressedKey === "Enter") {
         checkGuess()
         return
     }
-
     let found = pressedKey.match(/[a-z]/gi)
     if (!found || found.length > 1) {
         return
@@ -200,18 +198,14 @@ document.addEventListener('dblclick', function (event) {
 }, { passive: false })
 
 document.getElementById("keyboard-cont").addEventListener("click", (e) => {
-
     const target = e.target
-
     if (!target.classList.contains("keyboard-button")) {
         return
     }
     let key = target.textContent
-
     if (key === "Del") {
         key = "Backspace"
     }
-
     document.dispatchEvent(new KeyboardEvent("keyup", { 'key': key }))
 })
 
@@ -268,7 +262,31 @@ function startTimer(value) {
 function endGame() {
     if (time === 0) {
         document.getElementById("lose-modal").style.visibility = "visible"
-        document.getElementById('score-modal').innerHTML = score
+        document.getElementById('score-lose-modal').innerHTML = score
         document.getElementById('actualWord').innerHTML =  rightGuessString.toUpperCase()
+        checkIfHighScore(score)
+        document.getElementById('highscore').innerHTML = highScore
     }
+}
+
+//statistics modal
+document.getElementById("stats-button").addEventListener('click', function(){
+    document.getElementById("stats-modal").style.visibility = "visible"
+})
+
+//scoring - local storage
+
+
+
+function checkIfHighScore(score){
+ highScore = localStorage.getItem("highScore");
+
+if(highScore !== null){
+    if (score > highScore) {
+        localStorage.setItem("highScore", score);      
+    }
+}
+else{
+    localStorage.setItem("highScore", score);
+}
 }
