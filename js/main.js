@@ -172,7 +172,7 @@ function checkGuess() {
         nextLetter = 0;
 
         if (guessesRemaining === 0) {
-            let modalDelay = 0
+            let modalDelay = 0;
             setTimeout(() => {
                 document.getElementById('lose-modal').style.visibility = 'visible'
             }, modalDelay)
@@ -259,7 +259,11 @@ function startTimer(value) {
     function countdownTimer() {
         const minutes = Math.floor(time / 60);
         let seconds = time % 60;
-        countdownEl.innerHTML = `${minutes}:${seconds}`;
+        let formattedSeconds = seconds.toLocaleString('en-US', {
+          minimumIntegerDigits: 2,
+          useGrouping: false
+        })
+        countdownEl.innerHTML = `${minutes}:${formattedSeconds}`;
         time--;
         time = time = time < 0 ? 0 : time
         if(time===0){
@@ -273,7 +277,11 @@ function endGame() {
     //makes modal visible, updates the score in the modal, shows current highscore,
     // celebratory message if new highscore
     
-        document.getElementById("lose-modal").style.visibility = "visible"
+    if (time === 0) {
+      let modalDelay = 1001;
+            setTimeout(() => {
+                document.getElementById('lose-modal').style.visibility = 'visible'
+            }, modalDelay)
         document.getElementById('score-lose-modal').innerHTML = score
         document.getElementById('actualWord').innerHTML =  rightGuessString.toUpperCase()
         checkIfHighScore(gameTime, score)
