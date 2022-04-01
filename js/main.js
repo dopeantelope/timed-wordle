@@ -12,6 +12,7 @@ let twoMinuteHighScore;
 let fiveMinuteHighScore;
 let tenMinuteHighScore;
 let gameTime;
+let keyPressed;
 
 
 function initBoard() {
@@ -37,6 +38,7 @@ initBoard()
 
 document.addEventListener("keyup", (e) => {
     console.log(rightGuessString)
+    keyPressed = true;
 
     if (guessesRemaining === 0) {
         return
@@ -172,12 +174,7 @@ function checkGuess() {
         nextLetter = 0;
 
         if (guessesRemaining === 0) {
-            let modalDelay = 0;
-            setTimeout(() => {
-                document.getElementById('lose-modal').style.visibility = 'visible'
-            }, modalDelay)
-            document.getElementById('score-modal').innerHTML = score
-            document.getElementById('actualWord').innerHTML =  rightGuessString.toUpperCase()
+            endGame();
 
         }
     }
@@ -234,14 +231,15 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
         }
 
         node.addEventListener('animationend', handleAnimationEnd, { once: true });
+
     });
 
 
 function timeSelected(value) {
     document.getElementById("home").style.display = "none"
     document.querySelector('.title').style.visibility = 'visible';
-    gameTime=value;
-    startTimer(value);
+    gameTime = value;
+    startTimer(gameTime);
 }
 let startingTime;
 for (const button of document.getElementsByClassName("time-selected")) {
@@ -260,62 +258,75 @@ function startTimer(value) {
         const minutes = Math.floor(time / 60);
         let seconds = time % 60;
         let formattedSeconds = seconds.toLocaleString('en-US', {
-          minimumIntegerDigits: 2,
-          useGrouping: false
+            minimumIntegerDigits: 2,
+            useGrouping: false
         })
         countdownEl.innerHTML = `${minutes}:${formattedSeconds}`;
         time--;
         time = time = time < 0 ? 0 : time
-        if(time===0){
-        endGame()
+        if (time === 0) {
+            endGame()
         }
     }
 
 }
 
 function endGame() {
-    //makes modal visible, updates the score in the modal, shows current highscore,
+    //makes lose-modal visible, updates the score in the modal, shows current highscore,
     // celebratory message if new highscore
-    
-    if (time === 0) {
-      let modalDelay = 1001;
-            setTimeout(() => {
-                document.getElementById('lose-modal').style.visibility = 'visible'
-            }, modalDelay)
-        document.getElementById('score-lose-modal').innerHTML = score
-        document.getElementById('actualWord').innerHTML =  rightGuessString.toUpperCase()
-        checkIfHighScore(gameTime, score)
-        document.getElementById('highscore').innerHTML = localStorage.getItem('highScore'+gameTime,score)
-        if(score > localStorage.getItem('highscore'+gameTime,score) ){
-        document.getElementById("new-highscore").style.visibility="visible"    
-        
-        //add score to highscore array??
-        
+    let modalDelay = 100;
+    setTimeout(() => {
+        document.getElementById('lose-modal').style.visibility = 'visible'
+    }, modalDelay)
+    document.getElementById('score-lose-modal').innerHTML = score
+    document.getElementById('actualWord').innerHTML = rightGuessString.toUpperCase()
+    checkIfHighScore(gameTime, score)
+    document.getElementById('highscore').innerHTML = localStorage.getItem('highScore' + gameTime, score)
+    if (score > localStorage.getItem('highscore' + gameTime, score)) {
+        document.getElementById("new-highscore").style.visibility = "visible"
     }
+    //add score to highscore array??
+    time = 0;
 }
 
 
 //scoring - local storage
-function checkIfHighScore(gameTime, score){
-    let highScoreVersion = "highScore"+gameTime
-    highScoreVersion = localStorage.getItem('highScore'+gameTime,score);
-if(highScoreVersion !== null){
-    if (score > highScoreVersion) {
-        localStorage.setItem('highScore'+gameTime,score);
+function checkIfHighScore(gameTime, score) {
+    let highScoreVersion = "highScore" + gameTime
+    highScoreVersion = localStorage.getItem('highScore' + gameTime, score);
+    if (highScoreVersion !== null) {
+        if (score > highScoreVersion) {
+            localStorage.setItem('highScore' + gameTime, score);
+        }
+
     }
-    
+    else {
+        localStorage.setItem("highScore" + gameTime, score);
+    }
 }
-else{
-    localStorage.setItem("highScore"+gameTime, score);
 
-}}
+//statistics button
+let statButtons = document.getElementsByClassName("stats-button");
+for (let i = 0; i < statButtons.length; i++) {
+    statButtons[i].addEventListener("click", function () {
+        document.getElementById("stats-modal").style.visibility = "visible"
+        document.getElementById("lose-modal").style.visibility = "hidden"
+        document.getElementById("home").style.display = "none"
+    });
+}
 
-//statistics modal
-document.getElementById("stats-button").addEventListener('click', function(){
-    document.getElementById("stats-modal").style.visibility = "visible"
-})
+//home button
+let homeButtons = document.getElementsByClassName("home-button");
+for (let i = 0; i < homeButtons.length; i++) {
+    homeButtons[i].addEventListener("click", function () {
+        document.getElementById("stats-modal").style.visibility = "hidden"
+        document.getElementById("lose-modal").style.visibility = "hidden"
+        document.getElementById("home").style.display = "block"
+    });
+}
+
 //populate stats modal
-document.getElementById('1-minute-high-score').innerHTML = localStorage.getItem('highScore'+1,score)
-document.getElementById('2-minute-high-score').innerHTML = localStorage.getItem('highScore'+2,score)
-document.getElementById('5-minute-high-score').innerHTML = localStorage.getItem('highScore'+5,score)
-document.getElementById('10-minute-high-score').innerHTML = localStorage.getItem('highScore'+10,score)
+document.getElementById('1-minute-high-score').innerHTML = localStorage.getItem('highScore' + 1, score);
+document.getElementById('2-minute-high-score').innerHTML = localStorage.getItem('highScore' + 2, score);
+document.getElementById('5-minute-high-score').innerHTML = localStorage.getItem('highScore' + 5, score);
+document.getElementById('10-minute-high-score').innerHTML = localStorage.getItem('highScore' + 10, score);

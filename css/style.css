@@ -52,6 +52,10 @@ span {
   font-size: 2rem;
 }
 
+.info-line{
+  text-align: center;
+}
+
 
 
 
@@ -213,6 +217,7 @@ button {
   font-size: 2rem;
   cursor: pointer;
 }
+
 
 .home-ph-chart-bar, .ph-question {
   font-size: 3rem;
