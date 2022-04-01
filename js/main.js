@@ -262,10 +262,9 @@ function startTimer(value) {
         countdownEl.innerHTML = `${minutes}:${seconds}`;
         time--;
         time = time = time < 0 ? 0 : time
+        if(time===0){
         endGame()
-        console.log(localStorage)
-    checkIfHighScore(oneMinuteHighScore, score)
-
+        }
     }
 
 }
@@ -273,15 +272,17 @@ function startTimer(value) {
 function endGame() {
     //makes modal visible, updates the score in the modal, shows current highscore,
     // celebratory message if new highscore
-    if (time === 0) {
+    
         document.getElementById("lose-modal").style.visibility = "visible"
         document.getElementById('score-lose-modal').innerHTML = score
         document.getElementById('actualWord').innerHTML =  rightGuessString.toUpperCase()
         checkIfHighScore(gameTime, score)
         document.getElementById('highscore').innerHTML = localStorage.getItem('highScore'+gameTime,score)
         if(score > localStorage.getItem('highscore'+gameTime,score) ){
-        document.getElementById("new-highscore").style.visibility="visible"      
-        }
+        document.getElementById("new-highscore").style.visibility="visible"    
+        
+        //add score to highscore array??
+        
     }
 }
 
@@ -294,8 +295,12 @@ if(highScoreVersion !== null){
     if (score > highScoreVersion) {
         localStorage.setItem('highScore'+gameTime,score);
     }
+    
 }
-}
+else{
+    localStorage.setItem("highScore"+gameTime, score);
+
+}}
 
 //statistics modal
 document.getElementById("stats-button").addEventListener('click', function(){
