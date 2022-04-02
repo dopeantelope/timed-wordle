@@ -140,7 +140,7 @@ span {
 
 
 /****** MODALS *******/
-#lose-modal, #stats-modal, #help-modal {
+#lose-modal, #help-modal, #stats-modal {
   visibility: hidden;
 }
 
@@ -188,7 +188,6 @@ span {
 .examples-content {
   display: flex column;
   justify-content: center;
-
 }
 
 
@@ -201,13 +200,13 @@ button {
   cursor: pointer;
 }
 
-.timer-buttons {
+.timer-buttons, .stats-time-buttons  {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.timer-buttons > button {
+.timer-buttons  > button {
   margin: 0.5rem;
   padding: 1rem 4rem;
   border: 1px solid black;
@@ -218,7 +217,16 @@ button {
   background: black;
   color: white;
 }
-
+.stats-time-buttons  > button {
+  margin: 0.5rem;
+  padding: 1rem 4rem;
+  border: 1px solid black;
+  text-transform: uppercase;
+}
+.stats-time-buttons > button:hover {
+  background: black;
+  color: white;
+}
 .home-content > h1 {
   margin-top: -3rem;
 }
