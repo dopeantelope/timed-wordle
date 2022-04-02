@@ -9,7 +9,7 @@ h1 {
   display: flex;
   justify-content: center;
   font-size: 2rem;
-  padding: 2rem 0 1.2rem 0;
+  padding: 0 0 1rem 0;
 }
 
 .title {
@@ -54,6 +54,7 @@ span {
 
 .info-line{
   text-align: center;
+  padding: 0 0 1rem 0;
 }
 
 
@@ -139,11 +140,11 @@ span {
 
 
 /****** MODALS *******/
-#lose-modal, #stats-modal {
+#lose-modal, #stats-modal, #help-modal {
   visibility: hidden;
 }
 
-#home, #lose-modal, #stats-modal {
+#home, #lose-modal, #stats-modal, #help-modal {
   position: fixed;
   left: 0;
   top: 0;
@@ -155,7 +156,7 @@ span {
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 
-.home-content, .lose-modal-content, .stats-modal-content {
+.home-content, .lose-modal-content, .stats-modal-content, .help-modal-content {
   display: flex;
   flex-direction: column;
   font-family: 'Source Sans Pro', Helvetica, sans-serif;
@@ -172,11 +173,22 @@ span {
 }
 
 .lose-modal-content > h1 {
+  padding: 0 0 0 0;
+}
+
+.help-modal-content > p {
   padding-bottom: 1rem;
+  text-align: center;
 }
 
 #new-highscore {
   visibility: hidden;
+}
+
+.examples-content {
+  display: flex column;
+  justify-content: center;
+
 }
 
 
@@ -216,8 +228,15 @@ button {
   justify-content: flex-end;
   font-size: 2rem;
   cursor: pointer;
+  padding: 0 0 2rem 0;
 }
 
+.ph-x-circle {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 2rem;
+  cursor: pointer;
+}
 
 .home-ph-chart-bar, .ph-question {
   font-size: 3rem;

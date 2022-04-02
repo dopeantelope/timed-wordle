@@ -45,6 +45,7 @@ document.addEventListener("keyup", (e) => {
     }
 
     let pressedKey = String(e.key)
+
     if (pressedKey === "Backspace" && nextLetter !== 0) {
         deleteLetter()
         return
@@ -324,6 +325,17 @@ for (let i = 0; i < homeButtons.length; i++) {
         document.getElementById("home").style.display = "block"
     });
 }
+
+//help button
+document.getElementById("help-button").addEventListener("click", function () {
+    document.getElementById("help-modal").style.visibility = "visible"
+});
+
+//close button
+document.getElementById("close-button").addEventListener("click", function () {
+    document.getElementById("help-modal").style.visibility = "hidden"
+
+});
 
 //populate stats modal
 document.getElementById('1-minute-high-score').innerHTML = localStorage.getItem('highScore' + 1, score);
