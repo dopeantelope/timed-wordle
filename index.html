@@ -111,14 +111,16 @@
 
   <section id="stats-modal">
     <div class="stats-modal-content">
-      <p>1 minute highscore: </p>
-      <p id="1-minute-high-score"></p>
-      <p>2 minute highscore: </p>
-      <p id="1-minute-high-score"></p>
-      <p>5 minute highscore: </p>
-      <p id="1-minute-high-score"></p>
-      <p>10 minute highscore: </p>
-      <p id="1-minute-high-score"></p>
+      <h1>Stats</h1>
+      <div class="stats-time-buttons">
+        <button class="stat-time">1 minute <p id="1-minute-high-score"> Not Yet Played</p></button>
+        <button class="stat-time">2 minutes<p id="2-minute-high-score">Not Yet Played</p></button>
+        <button class="stat-time">5 minutes<p id="5-minute-high-score">Not Yet Played</p></button>
+        <button class="stat-time">10 minutes<p id="10-minute-high-score">Not Yet Played</p></button>
+        <div class="icons">
+          <button class="home-button"><i class="ph-house-line ph"></i></button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -131,6 +133,7 @@
       <p> After each guess, the color of the tiles will change to show how
         close your guess was to the word</p>
       <div class="examples-content">
+<<<<<<< HEAD
       <div class="letter-row">
         <div class="letter-box">C</div>
         <div class="letter-box" style="background-color:#71C562">A</div>
@@ -153,9 +156,33 @@
         <div class="letter-box">K</div>
         <div class="letter-box">E</div>
         <div class="letter-box">S</div>
+=======
+        <div class="letter-row">
+          <div class="letter-box">W</div>
+          <div class="letter-box" style="background-color:#71C562">E</div>
+          <div class="letter-box">A</div>
+          <div class="letter-box">R</div>
+          <div class="letter-box">Y</div>
+        </div>
+        <p>Letter in correct spot</p>
+        <div class="letter-row">
+          <div class="letter-box">W</div>
+          <div class="letter-box">E</div>
+          <div class="letter-box" style="background-color: #FFD700">A</div>
+          <div class="letter-box">R</div>
+          <div class="letter-box">Y</div>
+        </div>
+        <p>Letter in word but in the wrong spot</p>
+        <div class="letter-row">
+          <div class="letter-box" style="background-color: #666">W</div>
+          <div class="letter-box">E</div>
+          <div class="letter-box">A</div>
+          <div class="letter-box">R</div>
+          <div class="letter-box">Y</div>
+        </div>
+        <p>Letter not in the word </p>
+>>>>>>> main
       </div>
-      <p>Letter not in the word </p>
-    </div>
     </div>
   </section>
 

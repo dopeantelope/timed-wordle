@@ -338,7 +338,17 @@ document.getElementById("close-button").addEventListener("click", function () {
 });
 
 //populate stats modal
-document.getElementById('1-minute-high-score').innerHTML = localStorage.getItem('highScore' + 1, score);
-document.getElementById('2-minute-high-score').innerHTML = localStorage.getItem('highScore' + 2, score);
-document.getElementById('5-minute-high-score').innerHTML = localStorage.getItem('highScore' + 5, score);
-document.getElementById('10-minute-high-score').innerHTML = localStorage.getItem('highScore' + 10, score);
+document.getElementById('1-minute-high-score').innerHTML =  getHighScore(1);
+document.getElementById('2-minute-high-score').innerHTML = getHighScore(2);
+document.getElementById('5-minute-high-score').innerHTML =  getHighScore(5);
+document.getElementById('10-minute-high-score').innerHTML = getHighScore(10);
+
+function getHighScore(time){
+    if(localStorage.getItem('highScore' + time, score) === null){
+        return "Not Yet Played"
+    }
+    else{
+        return "Highscore:" + localStorage.getItem('highScore' + time, score)
+    }
+
+}
