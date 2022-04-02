@@ -348,7 +348,7 @@ function getHighScore(time){
         return "Not Yet Played"
     }
     else{
-        return "Highscore:" + localStorage.getItem('highScore' + time, score)
+        return "Highscore:&nbsp;" + localStorage.getItem('highScore' + time, score)
     }
 
 }
