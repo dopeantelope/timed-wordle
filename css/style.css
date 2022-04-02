@@ -13,6 +13,7 @@ h1 {
 }
 
 .title {
+  padding-top: 2rem;
   visibility: hidden;
 }
 
@@ -76,6 +77,8 @@ span {
   height: 3rem;
   width: 3rem;
   display: flex;
+  flex-basis: auto;
+  flex-shrink: 1;
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
@@ -95,6 +98,7 @@ span {
 
 #keyboard-cont div {
   display: flex;
+  justify-content: center;
 }
 
 .second-row {
@@ -103,16 +107,15 @@ span {
 
 .keyboard-button {
   display: flex;
-  flex-shrink: 1;
-  color:black;
+  height: 58px;
+  width: 43px;
+  color: black;
   justify-content: center;
   align-items: center;
   font-family: 'Roboto';
   font-size: 1rem;
   font-weight: 700;
   margin: 0 2px;
-  width: 43px;
-  height: 58px;
   text-transform: uppercase;
   border: 1px solid black;
   background-color: white;
@@ -255,25 +258,20 @@ button {
 
 /****** MEDIA QUERIES ******/
 
-@media all and (max-width: 450px) {
-  .keyboard-button {
-    padding: 1rem 0.62rem;
+@media all and (max-width: 480px) {
+  .first-row, .second-row, .third-row {
+    display: flex;
+    width: 100vw;
   }
-  .eye {
-    padding: 1rem 1rem;
-  }
-  .win-modal-content, .lose-modal-content {
-    top: 50%;
-  }
-}
 
-@media all and (max-width: 370px) {
+  .enter, .del {
+    padding: 0 4px;
+  }
+
   .keyboard-button {
-    padding: 1rem 0.5rem;
+    width: 100vw;
   }
-  .eye {
-    padding: 1rem 0.75rem;
-  }
+  
   .win-modal-content, .lose-modal-content {
     top: 50%;
   }
