@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Roboto', Helvetica, sans-serif;
 }
@@ -65,11 +69,11 @@ span {
 .letter-box {
   border: 1px solid rgb(224, 224, 224);
   margin: 2px;
-  padding: 1px;
+  padding: 3px;
   font-size: 2.5rem;
   font-weight: 700;
-  height: 3rem;
-  width: 3rem;
+  height: 3.25rem;
+  width: 3.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,11 +85,13 @@ span {
 }
 
 #keyboard-cont {
-  padding: 2rem 2rem;
   display: flex;
+  padding: 2rem;
+  width: 100%;
   flex-shrink: 1;
   flex-direction: column;
   align-items: center;
+  border: 2px solid red;
 }
 
 #keyboard-cont div {
@@ -98,7 +104,7 @@ span {
 
 .keyboard-button {
   display: flex;
-  flex-shrink: 1;
+  flex-shrink: 2;
   color:black;
   justify-content: center;
   align-items: center;
@@ -106,7 +112,7 @@ span {
   font-size: 1rem;
   font-weight: 700;
   margin: 0 2px;
-  width: 43px;
+  width: 42px;
   height: 58px;
   text-transform: uppercase;
   border: 1px solid black;
@@ -231,17 +237,15 @@ button {
 /****** MEDIA QUERIES ******/
 
 @media all and (max-width: 450px) {
-  .keyboard-button {
-    padding: 1rem 0.62rem;
-  }
-  .eye {
-    padding: 1rem 1rem;
-  }
-  .win-modal-content, .lose-modal-content {
-    top: 50%;
-  }
-}
+  /* .keyboard-button {
+    width: 15vw;
+  } */
 
+  /* .win-modal-content, .lose-modal-content {
+    top: 50%;
+  } */
+}
+/* 
 @media all and (max-width: 370px) {
   .keyboard-button {
     padding: 1rem 0.5rem;
@@ -252,4 +256,4 @@ button {
   .win-modal-content, .lose-modal-content {
     top: 50%;
   }
-}
+} */
