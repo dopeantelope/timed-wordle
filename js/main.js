@@ -308,12 +308,28 @@ function checkIfHighScore(gameTime, score) {
     }
 }
 
+//restart button
+
+document.getElementById("restart-button").addEventListener("click", function (){
+    guessesRemaining = 6;
+    rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
+    currentGuess = [];
+    nextLetter = 0;
+    resetBoard()
+    console.log(rightGuessString)
+    startTimer(gameTime)
+    document.getElementById("lose-modal").style.visibility="hidden"
+    document.getElementById("new-highscore").style.visibility = "visible"
+
+
+})
 //statistics button
 let statButtons = document.getElementsByClassName("stats-button");
 for (let i = 0; i < statButtons.length; i++) {
     statButtons[i].addEventListener("click", function () {
         document.getElementById("stats-modal").style.visibility = "visible"
         document.getElementById("lose-modal").style.visibility = "hidden"
+        document.getElementById("new-highscore").style.visibility = "visible"
         document.getElementById("home").style.display = "none"
     });
 }
@@ -324,6 +340,7 @@ for (let i = 0; i < homeButtons.length; i++) {
     homeButtons[i].addEventListener("click", function () {
         document.getElementById("stats-modal").style.visibility = "hidden"
         document.getElementById("lose-modal").style.visibility = "hidden"
+        document.getElementById("new-highscore").style.visibility = "visible"
         document.getElementById("home").style.display = "block"
     });
 }
