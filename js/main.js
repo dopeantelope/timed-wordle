@@ -319,7 +319,7 @@ document.getElementById("restart-button").addEventListener("click", function (){
     console.log(rightGuessString)
     startTimer(gameTime)
     document.getElementById("lose-modal").style.visibility="hidden"
-    document.getElementById("new-highscore").style.visibility = "visible"
+    document.getElementById("new-highscore").style.visibility = "hidden"
 
 
 })
@@ -329,7 +329,7 @@ for (let i = 0; i < statButtons.length; i++) {
     statButtons[i].addEventListener("click", function () {
         document.getElementById("stats-modal").style.visibility = "visible"
         document.getElementById("lose-modal").style.visibility = "hidden"
-        document.getElementById("new-highscore").style.visibility = "visible"
+        document.getElementById("new-highscore").style.visibility = "hidden"
         document.getElementById("home").style.display = "none"
     });
 }
@@ -340,7 +340,7 @@ for (let i = 0; i < homeButtons.length; i++) {
     homeButtons[i].addEventListener("click", function () {
         document.getElementById("stats-modal").style.visibility = "hidden"
         document.getElementById("lose-modal").style.visibility = "hidden"
-        document.getElementById("new-highscore").style.visibility = "visible"
+        document.getElementById("new-highscore").style.visibility = "hidden"
         document.getElementById("home").style.display = "block"
     });
 }
