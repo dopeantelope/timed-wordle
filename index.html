@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="description" content="Timed Wordle">
-  <meta name="keywords" content="wordle, mothers, day">
+  <meta name="keywords" content="wordle, words, game, word game, timed wordle, timer, word">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="images/NYT-Wordle-Icon-32.png">
@@ -15,8 +15,7 @@
   <!-- external CSS link -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Source+Sans+Pro:wght@300;400&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="css/reset.css">
@@ -96,10 +95,12 @@
         <p>score:&nbsp;&nbsp;</p>
         <p id="score-lose-modal"></p>
       </div>
-      <div class="high-word-score">
+      <div class="highscore-div">
+        <p id="new-highscore">YOU GOT A NEW HIGHSCORE!</p>
+      </div>
+      <div class="right-word-score">
         <p>highscore:&nbsp;&nbsp;</p>
         <p id="highscore"></p>
-        <p id="new-highscore">YOU GOT A NEW HIGHSCORE</p>
       </div>
       <div class="lose-modal-icons">
         <button id="restart-button"><i class="ph-arrow-counter-clockwise ph"></i></button>
@@ -128,34 +129,35 @@
     <div class="help-modal-content">
       <button class="close-button"><i class="ph-x-circle"></i></button>
       <h1>How to Play</h1>
-      <p>Guess the word in six tries</p>
-      <p>Each guess must be a valid five letter word</p>
-      <p> After each guess, the color of the tiles will change to show how
+      <p class="help-text">Guess the word in six tries</p>
+      <p class="help-text">Each guess must be a valid five letter word</p>
+      <p class="help-text"> After each guess, the color of the tiles will change to show how
         close your guess was to the word</p>
       <div class="examples-content">
       <div class="letter-row">
         <div class="letter-box">C</div>
-        <div class="letter-box" style="background-color:#71C562">A</div>
+        <div class="letter-box no-border" style="background-color:#71C562">A</div>
         <div class="letter-box">K</div>
         <div class="letter-box">E</div>
         <div class="letter-box">S</div>
       </div>
-      <p>Letter in correct spot</p>
+      <p class="instructions">Letter in correct spot</p>
       <div class="letter-row">
         <div class="letter-box">C</div>
         <div class="letter-box">A</div>
-        <div class="letter-box" style="background-color: #FFD700">K</div>
+        <div class="letter-box no-border" style="background-color: #FFD700">K</div>
         <div class="letter-box">E</div>
         <div class="letter-box">S</div>
       </div>
-      <p>Letter in word but in the wrong spot</p>
+      <p class="instructions">Letter in word but in the wrong spot</p>
       <div class="letter-row">
-        <div class="letter-box" style="background-color: #666">C</div>
-        <div class="letter-box">A</div>
+        <div class="letter-box no-border" style="background-color: #666">C</div>
+        <div class="letter-box no-border">A</div>
         <div class="letter-box">K</div>
         <div class="letter-box">E</div>
         <div class="letter-box">S</div>
       </div>
+      <p class="instructions">Letter not in the word</p>
     </div>
   </section>
 <section id="chart-modal">

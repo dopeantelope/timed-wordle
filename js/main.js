@@ -386,8 +386,8 @@ function getHighScore(time) {
     if (localStorage.getItem('highScore' + time, score) === null) {
         return "Not Yet Played"
     }
-    else {
-        return "Highscore:" + localStorage.getItem('highScore' + time, score)
+    else{
+        return "Highscore:&nbsp;" + localStorage.getItem('highScore' + time, score)
     }
 }
 function addScoreToArray(gameTime) {
