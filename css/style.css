@@ -18,9 +18,6 @@ h1 {
   visibility: hidden;
 }
 
-p {
-  font-weight: 300;
-}
 
 span {
   font-weight: 400;
@@ -169,7 +166,6 @@ span {
   color: black;
   background-color: white;
   text-transform: uppercase;
-  font-weight: 400;
   position: absolute;
   top: 40%;
   left: 50%;
@@ -181,6 +177,21 @@ span {
 /* #dark-mode {
   z-index: 1;
 } */
+
+.right-word-score {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.highscore-div {
+  display: flex;
+  justify-content: center;
+  font-family: 'Source Sans Pro';
+  margin-top: -1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
 
 .lose-modal-content > h1 {
   padding: 0 0 0 0;
@@ -305,6 +316,7 @@ button {
   }
 
   .home-content, .lose-modal-content, .stats-modal-content, .help-modal-content {
-    width: 80vw;
+    height: 60vh;
+    width: 60vw;
   }
 }
