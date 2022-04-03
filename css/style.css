@@ -1,5 +1,6 @@
 body {
   font-family: 'Roboto', Helvetica, sans-serif;
+  height: 100vh;
 }
 
 
@@ -177,6 +178,10 @@ span {
   width: 20rem;
 }
 
+/* #dark-mode {
+  z-index: 1;
+} */
+
 .lose-modal-content > h1 {
   padding: 0 0 0 0;
 }
@@ -297,5 +302,9 @@ button {
   
   .win-modal-content, .lose-modal-content {
     top: 50%;
+  }
+
+  .home-content, .lose-modal-content, .stats-modal-content, .help-modal-content {
+    width: 80vw;
   }
 }
