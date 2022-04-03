@@ -12,7 +12,7 @@ let scoresForMinutes1 = [];
 let scoresForMinutes2= [];
 let scoresForMinutes5 = [];
 let scoresForMinutes10=[];
-
+let myChart;
 
 function initBoard() {
     let board = document.getElementById("game-board");
@@ -364,23 +364,6 @@ document.getElementById('2-minute-high-score').innerHTML = getHighScore(2);
 document.getElementById('5-minute-high-score').innerHTML = getHighScore(5);
 document.getElementById('10-minute-high-score').innerHTML = getHighScore(10);
 
-//functioning stats modal buttons
-document.getElementById('1-minute-high-score').addEventListener("click", function (){
-    document.getElementById('chart-modal').style.visibility = "visible"
-    createChart(1)
-})
-document.getElementById('2-minute-high-score').addEventListener("click", function (){
-    document.getElementById('chart-modal').style.visibility = "visible"
-    createChart(2)
-})
-document.getElementById('5-minute-high-score').addEventListener("click", function (){
-    document.getElementById('chart-modal').style.visibility = "visible"
-    createChart(5)
-})
-document.getElementById('10-minute-high-score').addEventListener("click", function (){
-    document.getElementById('chart-modal').style.visibility = "visible"
-    createChart(10)
-})
 
 function getHighScore(time) {
     if (localStorage.getItem('highScore' + time, score) === null) {
@@ -416,12 +399,14 @@ function addScoreToArray(gameTime) {
         } 
     }
     else if(gameTime == 5){
+        console.log("here in 5 ")
         if (scoreStorage !== null) {
             scoresForMinutes5 = JSON.parse(localStorage.getItem("scoresForMinutes5"));
             scoresForMinutes5.push(score)
             localStorage.setItem("scoresForMinutes2", JSON.stringify(scoresForMinutes5));
         }
         else {
+            console.log("here in else")
             scoresForMinutes5.push(score)
             localStorage.setItem("scoresForMinutes5", JSON.stringify(scoresForMinutes5));
         } 
@@ -464,7 +449,7 @@ function createChart(gameTime){
         }]
     };
     
-    const config = {
+const config = {
         type: 'bar',
         data: data,
         plugins: [ChartDataLabels],
@@ -487,8 +472,31 @@ function createChart(gameTime){
         },
     };
     
-    const myChart = new Chart(
+     myChart = new Chart(
         document.getElementById('myChart'),
         config
     );
 }
+
+
+//functioning stats modal buttons
+document.getElementById('1-minute-high-score').addEventListener("click", function (){
+    document.getElementById('chart-modal').style.visibility = "visible"
+   // myChart.destroy()
+    createChart(1)
+})
+document.getElementById('2-minute-high-score').addEventListener("click", function (){
+    document.getElementById('chart-modal').style.visibility = "visible"
+        myChart.destroy();
+    createChart(2)
+})
+document.getElementById('5-minute-high-score').addEventListener("click", function (){
+    document.getElementById('chart-modal').style.visibility = "visible"
+    myChart.destroy();
+    createChart(5)
+})
+document.getElementById('10-minute-high-score').addEventListener("click", function (){
+    document.getElementById('chart-modal').style.visibility = "visible"
+    myChart.destroy();
+    createChart(10)
+})
