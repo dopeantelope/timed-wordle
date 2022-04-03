@@ -316,7 +316,7 @@ button {
   }
 
   .home-content, .lose-modal-content, .stats-modal-content, .help-modal-content {
-    height: 60vh;
-    width: 60vw;
+    top: 50%;
+    width:15rem;
   }
 }
