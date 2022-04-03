@@ -58,6 +58,11 @@ span {
   padding: 0 0 1rem 0;
 }
 
+.high-word-score{
+  display:flex;
+  padding: 0 0 1rem 0;
+}
+
 
 
 
@@ -287,4 +292,5 @@ button {
     top: 50%;
     width:15rem;
   }
+  
 }
