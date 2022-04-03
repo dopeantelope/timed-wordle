@@ -350,7 +350,19 @@ document.getElementById('10-minute-high-score').innerHTML = getHighScore(10);
 //functioning stats modal buttons
 document.getElementById('1-minute-high-score').addEventListener("click", function (){
     document.getElementById('chart-modal').style.visibility = "visible"
-    createChart("oneMinuteScores")
+    createChart(1)
+})
+document.getElementById('2-minute-high-score').addEventListener("click", function (){
+    document.getElementById('chart-modal').style.visibility = "visible"
+    createChart(2)
+})
+document.getElementById('5-minute-high-score').addEventListener("click", function (){
+    document.getElementById('chart-modal').style.visibility = "visible"
+    createChart(5)
+})
+document.getElementById('10-minute-high-score').addEventListener("click", function (){
+    document.getElementById('chart-modal').style.visibility = "visible"
+    createChart(10)
 })
 
 function getHighScore(time) {
@@ -415,8 +427,8 @@ function addScoreToArray(gameTime) {
 
 //chart js
 
-function createChart(){
-    let myArray = JSON.parse(localStorage.getItem("oneMinuteScores"))
+function createChart(gameTime){
+    let myArray = JSON.parse(localStorage.getItem("scoresForMinutes" + gameTime))
     const freqMap = myArray.reduce(
         (map, year) => map.set(year, (map.get(year) || 0) + 1),
         new Map
