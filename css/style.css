@@ -56,6 +56,11 @@ span {
   padding: 0 0 1rem 0;
 }
 
+.high-word-score{
+  display:flex;
+  padding: 0 0 1rem 0;
+}
+
 
 
 /****** GAME BOARD ******/
@@ -143,11 +148,12 @@ span {
 
 
 /****** MODALS *******/
-#lose-modal, #help-modal, #stats-modal {
+#lose-modal, #help-modal, #stats-modal, #chart-modal {
   visibility: hidden;
 }
 
-#home, #lose-modal, #stats-modal, #help-modal {
+#home, #lose-modal, #stats-modal, #help-modal, #chart-modal{
+  display:flex;
   position: fixed;
   left: 0;
   top: 0;
@@ -157,9 +163,11 @@ span {
   opacity: 1;
   transform: scale(1.1);
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+  
 }
 
-.home-content, .lose-modal-content, .stats-modal-content, .help-modal-content {
+.home-content, .lose-modal-content, .stats-modal-content, .help-modal-content, .chart-modal-content {
+  
   display: flex;
   flex-direction: column;
   font-family: 'Source Sans Pro', Helvetica, sans-serif;
@@ -311,9 +319,6 @@ button {
     width: 100vw;
   }
   
-  .win-modal-content, .lose-modal-content {
-    top: 50%;
-  }
 
   .home-content, .lose-modal-content, .stats-modal-content, .help-modal-content {
     top: 50%;
