@@ -103,7 +103,7 @@
         <p id="highscore"></p>
       </div>
       <div class="lose-modal-icons">
-        <button><i class="ph-arrow-counter-clockwise ph"></i></button>
+        <button id="restart-button"><i class="ph-arrow-counter-clockwise ph"></i></button>
         <button class="home-button"><i class="ph-house-line ph"></i></button>
         <button class="stats-button"><i class="ph-chart-bar ph home-ph-chart-bar"></i></button>
       </div>
@@ -127,7 +127,7 @@
 
   <section id="help-modal">
     <div class="help-modal-content">
-      <button id="close-button"><i class="ph-x-circle"></i></button>
+      <button class="close-button"><i class="ph-x-circle"></i></button>
       <h1>How to Play</h1>
       <p class="help-text">Guess the word in six tries</p>
       <p class="help-text">Each guess must be a valid five letter word</p>
@@ -160,8 +160,20 @@
       <p class="instructions">Letter not in the word</p>
     </div>
   </section>
+<section id="chart-modal">
+  <div class="chart-modal-content">
+    <button class="close-button"><i class="ph-x-circle"></i></button>
+    <h1>Results</h1>
+  <div>
+    <canvas id="myChart"></canvas>
+  </div>
+</div>
+</section>
 
   <script type="module" src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0-rc.1/chartjs-plugin-datalabels.min.js" integrity="sha512-+UYTD5L/bU1sgAfWA0ELK5RlQ811q8wZIocqI7+K0Lhh8yVdIoAMEs96wJAIbgFvzynPm36ZCXtkydxu1cs27w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
