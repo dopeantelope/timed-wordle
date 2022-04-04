@@ -9,10 +9,15 @@ let time;
 let score = 0;
 let gameTime;
 let scoresForMinutes1 = [];
-let scoresForMinutes2= [];
+let scoresForMinutes2 = [];
 let scoresForMinutes5 = [];
-let scoresForMinutes10=[];
+let scoresForMinutes10 = [];
 let myChart;
+let numberOfGuesses1= [];
+let numberOfGuesses2 = [];
+let numberOfGuesses5 = [];
+let numberOfGuesses10 = [];
+let gotInNumberOfGuesses;
 
 function initBoard() {
     let board = document.getElementById("game-board");
@@ -142,6 +147,7 @@ function checkGuess() {
             if (currentGuess[i] === rightGuess[i]) {
                 // shade #71C562 
                 letterColor = '#71C562'
+
             } else {
                 // shade box #FFD700
                 letterColor = '#FFD700'
@@ -163,6 +169,31 @@ function checkGuess() {
     }
 
     if (guessString === rightGuessString) {
+        if (guessesRemaining == 6) {
+            gotInNumberOfGuesses=1
+            addNumberOfGueesesToArray(gotInNumberOfGuesses)
+        }
+        if (guessesRemaining == 5) {
+            gotInNumberOfGuesses=2
+            addNumberOfGueesesToArray(gotInNumberOfGuesses)
+        }
+        if (guessesRemaining == 4) {
+            gotInNumberOfGuesses=3
+            addNumberOfGueesesToArray(gotInNumberOfGuesses)
+        }
+        if (guessesRemaining == 3) {
+            gotInNumberOfGuesses=4
+            addNumberOfGueesesToArray(gotInNumberOfGuesses)
+        }
+        if (guessesRemaining == 2) {
+            gotInNumberOfGuesses=5
+            addNumberOfGueesesToArray(gotInNumberOfGuesses)
+        }
+        if (guessesRemaining == 1) {
+            gotInNumberOfGuesses=6
+            addNumberOfGueesesToArray(gotInNumberOfGuesses)
+        }
+
         setTimeout(() => {
             nextLevel()
         }, 40)
@@ -284,11 +315,10 @@ function endGame() {
     checkIfHighScore(gameTime, score)
     addScoreToArray(gameTime)
     document.getElementById('highscore').innerHTML = localStorage.getItem('highScore' + gameTime, score)
-    if (score > localStorage.getItem('highscore' + gameTime, score)) {
+    if (score > localStorage.getItem('highScore' + gameTime, score)) {
         document.getElementById("new-highscore").style.visibility = "visible"
     }
     //get one minute scores storage        
-  
     time = 0;
     score = 0;
 }
@@ -310,7 +340,7 @@ function checkIfHighScore(gameTime, score) {
 
 //restart button
 
-document.getElementById("restart-button").addEventListener("click", function (){
+document.getElementById("restart-button").addEventListener("click", function () {
     guessesRemaining = 6;
     rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
     currentGuess = [];
@@ -318,7 +348,7 @@ document.getElementById("restart-button").addEventListener("click", function (){
     resetBoard()
     console.log(rightGuessString)
     startTimer(gameTime)
-    document.getElementById("lose-modal").style.visibility="hidden"
+    document.getElementById("lose-modal").style.visibility = "hidden"
     document.getElementById("new-highscore").style.visibility = "hidden"
 
 
@@ -354,9 +384,10 @@ document.getElementById("help-button").addEventListener("click", function () {
 let closeButtons = document.getElementsByClassName("close-button");
 for (let i = 0; i < closeButtons.length; i++) {
     closeButtons[i].addEventListener("click", function () {
-    document.getElementById("help-modal").style.visibility = "hidden";
-    document.getElementById("chart-modal").style.visibility = "hidden";
-})};
+        document.getElementById("help-modal").style.visibility = "hidden";
+        document.getElementById("chart-modal").style.visibility = "hidden";
+    })
+};
 
 //populate stats modal
 document.getElementById('1-minute-high-score').innerHTML = getHighScore(1);
@@ -369,13 +400,62 @@ function getHighScore(time) {
     if (localStorage.getItem('highScore' + time, score) === null) {
         return "Not Yet Played"
     }
-    else{
+    else {
         return "Highscore:&nbsp;" + localStorage.getItem('highScore' + time, score)
     }
 }
+
+function addNumberOfGueesesToArray(guessNumber){
+    let scoreStorage = JSON.parse(localStorage.getItem("numberOfGuesses" + gameTime));
+  if(gameTime ==1){
+        if (scoreStorage !== null) {
+            numberOfGuesses1 = JSON.parse(localStorage.getItem("numberOfGuesses1"));
+            numberOfGuesses1.push(guessNumber)
+            localStorage.setItem("numberOfGuesses1", JSON.stringify(numberOfGuesses1));
+        }
+        else {
+            numberOfGuesses1.push(guessNumber)
+            localStorage.setItem("numberOfGuesses1", JSON.stringify(numberOfGuesses1));
+        } 
+    } 
+    else if(gameTime ==2){
+        if (scoreStorage !== null) {
+            numberOfGuesses2 = JSON.parse(localStorage.getItem("numberOfGuesses2"));
+            numberOfGuesses2.push(guessNumber)
+            localStorage.setItem("numberOfGuesses1", JSON.stringify(numberOfGuesses2));
+        }
+        else {
+            numberOfGuesses1.push(guessNumber)
+            localStorage.setItem("numberOfGuesses2", JSON.stringify(numberOfGuesses2));
+        } 
+    } 
+    if(gameTime ==5){
+        if (scoreStorage !== null) {
+            numberOfGuesses5 = JSON.parse(localStorage.getItem("numberOfGuesses5"));
+            numberOfGuesses5.push(guessNumber)
+            localStorage.setItem("numberOfGuesses5", JSON.stringify(numberOfGuesses5));
+        }
+        else {
+            numberOfGuesses5.push(guessNumber)
+            localStorage.setItem("numberOfGuesses5", JSON.stringify(numberOfGuesses5));
+        } 
+    } 
+    if(gameTime ==10){
+        if (scoreStorage !== null) {
+            numberOfGuesses10 = JSON.parse(localStorage.getItem("numberOfGuesses10"));
+            numberOfGuesses10.push(guessNumber)
+            localStorage.setItem("numberOfGuesses10", JSON.stringify(numberOfGuesses10));
+        }
+        else {
+            numberOfGuesses10.push(guessNumber)
+            localStorage.setItem("numberOfGuesses10", JSON.stringify(numberOfGuesses10));
+        } 
+    } 
+}
+/** 
 function addScoreToArray(gameTime) {
-    let scoreStorage = JSON.parse(localStorage.getItem("scoresForMinutes"+gameTime));
-    if(gameTime == 1){
+    let scoreStorage = JSON.parse(localStorage.getItem("scoresForMinutes" + gameTime));
+    if (gameTime == 1) {
         if (scoreStorage !== null) {
             scoresForMinutes1 = JSON.parse(localStorage.getItem("scoresForMinutes1"));
             scoresForMinutes1.push(score)
@@ -384,10 +464,10 @@ function addScoreToArray(gameTime) {
         else {
             scoresForMinutes1.push(score)
             localStorage.setItem("scoresForMinutes1", JSON.stringify(scoresForMinutes1));
-        } 
+        }
     }
-    
-    else if(gameTime == 2){
+
+    else if (gameTime == 2) {
         if (scoreStorage !== null) {
             scoresForMinutes2 = JSON.parse(localStorage.getItem("scoresForMinutes2"));
             scoresForMinutes2.push(score)
@@ -396,9 +476,9 @@ function addScoreToArray(gameTime) {
         else {
             scoresForMinutes2.push(score)
             localStorage.setItem("scoresForMinutes2", JSON.stringify(scoresForMinutes2));
-        } 
+        }
     }
-    else if(gameTime == 5){
+    else if (gameTime == 5) {
         console.log("here in 5 ")
         if (scoreStorage !== null) {
             scoresForMinutes5 = JSON.parse(localStorage.getItem("scoresForMinutes5"));
@@ -409,9 +489,9 @@ function addScoreToArray(gameTime) {
             console.log("here in else")
             scoresForMinutes5.push(score)
             localStorage.setItem("scoresForMinutes5", JSON.stringify(scoresForMinutes5));
-        } 
+        }
     }
-    else if(gameTime == 10){
+    else if (gameTime == 10) {
         if (scoreStorage !== null) {
             scoresForMinutes10 = JSON.parse(localStorage.getItem("scoresForMinutes10"));
             scoresForMinutes10.push(score)
@@ -420,25 +500,25 @@ function addScoreToArray(gameTime) {
         else {
             scoresForMinutes10.push(score)
             localStorage.setItem("scoresForMinutes10", JSON.stringify(scoresForMinutes10));
-        } 
+        }
     }
-    
+
 
 }
-
+**/
 
 //chart js
 
-function createChart(gameTime){
-    let myArray = JSON.parse(localStorage.getItem("scoresForMinutes" + gameTime))
+function createChart(gameTime) {
+    let myArray = JSON.parse(localStorage.getItem("numberOfGuesses" + gameTime))
     const freqMap = myArray.reduce(
         (map, year) => map.set(year, (map.get(year) || 0) + 1),
         new Map
     );
-    
+
     const xAxisArr = Array.from(freqMap.keys()); // array of unique numbers
     const yAxisArr = Array.from(freqMap.values()); // array of frequencies for number
-    
+
     const labels = xAxisArr;
     const data = {
         labels: labels,
@@ -448,8 +528,8 @@ function createChart(gameTime){
             data: yAxisArr
         }]
     };
-    
-const config = {
+
+    const config = {
         type: 'bar',
         data: data,
         plugins: [ChartDataLabels],
@@ -459,7 +539,7 @@ const config = {
                 legend: {
                     display: false,
                 },
-                datalabels:{
+                datalabels: {
                     anchor: 'end',
                     align: 'left',
                     formatter: Math.round,
@@ -471,37 +551,37 @@ const config = {
             }
         },
     };
-    
-     myChart = new Chart(
+
+    myChart = new Chart(
         document.getElementById('myChart'),
         config
     );
 }
-function updateChart(number){
-if(myChart){
-    myChart.destroy()
-    createChart(number)
-}
-else{
-    createChart(number)
-}
+function updateChart(number) {
+    if (myChart) {
+        myChart.destroy()
+        createChart(number)
+    }
+    else {
+        createChart(number)
+    }
 }
 //functioning stats modal buttons
-document.getElementById('1-minute-high-score').addEventListener("click", function (){
+document.getElementById('1-minute-high-score').addEventListener("click", function () {
     document.getElementById('chart-modal').style.visibility = "visible"
-  updateChart(1)
+    updateChart(1)
 })
-document.getElementById('2-minute-high-score').addEventListener("click", function (){
+document.getElementById('2-minute-high-score').addEventListener("click", function () {
     document.getElementById('chart-modal').style.visibility = "visible"
-        myChart.destroy();
+    myChart.destroy();
     updateChart(2)
 })
-document.getElementById('5-minute-high-score').addEventListener("click", function (){
+document.getElementById('5-minute-high-score').addEventListener("click", function () {
     document.getElementById('chart-modal').style.visibility = "visible"
     myChart.destroy();
     updateChart(5)
 })
-document.getElementById('10-minute-high-score').addEventListener("click", function (){
+document.getElementById('10-minute-high-score').addEventListener("click", function () {
     document.getElementById('chart-modal').style.visibility = "visible"
     myChart.destroy();
     updateChart(10)
