@@ -206,6 +206,7 @@ function checkGuess() {
         if (guessesRemaining === 0) {
             console.log("here")
             time= 0;
+            addNumberOfGueesesToArray(0)
 
         }
     }
@@ -363,6 +364,7 @@ document.getElementById("restart-button").addEventListener("click", function () 
 let statButtons = document.getElementsByClassName("stats-button");
 for (let i = 0; i < statButtons.length; i++) {
     statButtons[i].addEventListener("click", function () {
+        populateStatsModal();
         document.getElementById("stats-modal").style.visibility = "visible"
         document.getElementById("lose-modal").style.visibility = "hidden"
         document.getElementById("new-highscore").style.visibility = "hidden"
@@ -400,13 +402,16 @@ for (let i = 0; i < closeButtons.length; i++) {
 };
 
 //populate stats modal
+function populateStatsModal(){
 document.getElementById('1-minute-high-score').innerHTML = getHighScore(1);
 document.getElementById('2-minute-high-score').innerHTML = getHighScore(2);
 document.getElementById('5-minute-high-score').innerHTML = getHighScore(5);
 document.getElementById('10-minute-high-score').innerHTML = getHighScore(10);
-
+}
 
 function getHighScore(time) {
+    console.log("in hs method ")
+    console.log(localStorage.getItem('highScore' + time))
     if (localStorage.getItem('highScore' + time) === null) {
         return "Not Yet Played"
     }
@@ -432,7 +437,7 @@ function addNumberOfGueesesToArray(guessNumber){
         if (scoreStorage !== null) {
             numberOfGuesses2 = JSON.parse(localStorage.getItem("numberOfGuesses2"));
             numberOfGuesses2.push(guessNumber)
-            localStorage.setItem("numberOfGuesses1", JSON.stringify(numberOfGuesses2));
+            localStorage.setItem("numberOfGuesses2", JSON.stringify(numberOfGuesses2));
         }
         else {
             numberOfGuesses1.push(guessNumber)
