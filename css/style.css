@@ -95,6 +95,7 @@ span {
 
 #keyboard-cont {
   padding: 2rem 2rem;
+  padding-bottom: 0;
   display: flex;
   flex-shrink: 1;
   flex-direction: column;
@@ -229,7 +230,7 @@ span {
 
 .no-border {
   border: none;
-  padding: 1px;
+  padding: 2px;
 }
 
 

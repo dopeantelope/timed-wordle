@@ -28,7 +28,7 @@ function initBoard() {
         }
         board.appendChild(row)
     }
-    document.getElementById('score').innerHTML = `Level: ${score}`
+    document.getElementById('score').innerHTML = `Score: ${score}`
 
 }
 
