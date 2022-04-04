@@ -477,26 +477,32 @@ const config = {
         config
     );
 }
-
-
+function updateChart(number){
+if(myChart){
+    myChart.destroy()
+    createChart(number)
+}
+else{
+    createChart(number)
+}
+}
 //functioning stats modal buttons
 document.getElementById('1-minute-high-score').addEventListener("click", function (){
     document.getElementById('chart-modal').style.visibility = "visible"
-   // myChart.destroy()
-    createChart(1)
+  updateChart(1)
 })
 document.getElementById('2-minute-high-score').addEventListener("click", function (){
     document.getElementById('chart-modal').style.visibility = "visible"
         myChart.destroy();
-    createChart(2)
+    updateChart(2)
 })
 document.getElementById('5-minute-high-score').addEventListener("click", function (){
     document.getElementById('chart-modal').style.visibility = "visible"
     myChart.destroy();
-    createChart(5)
+    updateChart(5)
 })
 document.getElementById('10-minute-high-score').addEventListener("click", function (){
     document.getElementById('chart-modal').style.visibility = "visible"
     myChart.destroy();
-    createChart(10)
+    updateChart(10)
 })
