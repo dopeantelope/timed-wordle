@@ -97,7 +97,7 @@ function nextLevel() {
     resetBoard()
     console.log(rightGuessString)
     score = score + 1
-    document.getElementById('score').innerHTML = `Level: ${score}`
+    document.getElementById('score').innerHTML = `Score: ${score}`
 
 }
 function resetBoard() {
@@ -204,7 +204,8 @@ function checkGuess() {
         nextLetter = 0;
 
         if (guessesRemaining === 0) {
-            endGame();
+            console.log("here")
+            time= 0;
 
         }
     }
@@ -266,6 +267,7 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
 
 
 function timeSelected(value) {
+    console.log("in here")
     document.getElementById("home").style.display = "none"
     document.querySelector('.title').style.visibility = 'visible';
     gameTime = value;
@@ -305,22 +307,26 @@ function startTimer(value) {
 function endGame() {
     //makes lose-modal visible, updates the score in the modal, shows current highscore,
     // celebratory message if new highscore, reset the board
+    console.log("in end game method")
+    console.log("begining" + score);
     let modalDelay = 100;
     setTimeout(() => {
         document.getElementById('lose-modal').style.visibility = 'visible'
     }, modalDelay)
-    resetBoard();
     document.getElementById('score-lose-modal').innerHTML = score
+    console.log("middle" + score);
     document.getElementById('actualWord').innerHTML = rightGuessString.toUpperCase()
     checkIfHighScore(gameTime, score)
-    addScoreToArray(gameTime)
-    document.getElementById('highscore').innerHTML = localStorage.getItem('highScore' + gameTime, score)
-    if (score > localStorage.getItem('highScore' + gameTime, score)) {
+    console.log(score);
+    //addScoreToArray(gameTime)
+    document.getElementById('highscore').innerHTML = localStorage.getItem('highScore' + gameTime)
+    if (score > localStorage.getItem('highScore' + gameTime)) {
+        console.log("here")
         document.getElementById("new-highscore").style.visibility = "visible"
     }
     //get one minute scores storage        
-    time = 0;
     score = 0;
+    resetBoard();
 }
 
 
@@ -372,6 +378,10 @@ for (let i = 0; i < homeButtons.length; i++) {
         document.getElementById("lose-modal").style.visibility = "hidden"
         document.getElementById("new-highscore").style.visibility = "hidden"
         document.getElementById("home").style.display = "block"
+        guessesRemaining = 6;
+    rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
+    currentGuess = [];
+    nextLetter = 0;
     });
 }
 
@@ -397,7 +407,7 @@ document.getElementById('10-minute-high-score').innerHTML = getHighScore(10);
 
 
 function getHighScore(time) {
-    if (localStorage.getItem('highScore' + time, score) === null) {
+    if (localStorage.getItem('highScore' + time) === null) {
         return "Not Yet Played"
     }
     else {
