@@ -3,7 +3,7 @@ Timed Wordle is a variation of the popular Wordle game where players are racing 
 
 **Link to project:** https://timedwordle.netlify.app
 
-![alt tag](http://placecorgi.com/1200/650)
+<img src="images/Screenshot 2022-07-13 at 19.32.02.png"/>
 
 ## How It's Made:
 
