@@ -1,5 +1,5 @@
 # Timed Wordle
-Timed Wordle is a variation of the popular Wordle game where players are racing against time to get the highest score. Players can choose from four different game modes.
+Timed Wordle is a variation of the popular Wordle game where players are racing against time to get the highest score. Players can choose from four different game modes and can view their stats and highscore for each.
 
 **Link to project:** https://timedwordle.netlify.app
 
